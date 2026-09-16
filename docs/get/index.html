@@ -1,14 +1,133 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=https://play.google.com/store/apps/details?id=app.sprkt.maintenance">
-  <title>A redirecionar para a Sprkt...</title>
-  <script>
-    window.location.replace("https://play.google.com/store/apps/details?id=app.sprkt.maintenance");
-  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Sprkt</title>
+
+<script>
+/* Runs before paint so mobile visitors are redirected without seeing this page.
+   No meta refresh here on purpose: a meta refresh fires unconditionally and
+   would beat this detection, sending iPhone users to Google Play. */
+(function () {
+  var IOS_URL  = "https://apps.apple.com/app/id6799513483";
+  var PLAY_URL = "https://play.google.com/store/apps/details?id=app.sprkt.maintenance";
+
+  var ua = navigator.userAgent || navigator.vendor || "";
+
+  /* iPadOS 13+ reports itself as a Mac, so the touch-point check is what
+     actually catches iPads. Without it they fall through to the desktop path. */
+  var isIOS = /iPad|iPhone|iPod/.test(ua) ||
+              (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var isAndroid = /android/i.test(ua);
+
+  if (isIOS)     { window.location.replace(IOS_URL);  return; }
+  if (isAndroid) { window.location.replace(PLAY_URL); return; }
+  /* Anything else (desktop, unknown) stays here and picks a store. */
+})();
+</script>
+
+<style>
+  :root {
+    --dark: #1A1E26;
+    --orange: #E8682A;
+    --text: #F2F2F7;
+    --muted: #8E9BAE;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--dark);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    line-height: 1.7;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .wrap { text-align: center; max-width: 520px; }
+  .brand-row {
+    display: inline-flex; align-items: center; gap: 10px; margin-bottom: 24px;
+  }
+  .logo-dot {
+    width: 26px; height: 26px; border-radius: 50%; background: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .brand { color: var(--orange); font-weight: 700; font-size: 16px; letter-spacing: 0.5px; }
+  h1 { font-size: 22px; font-weight: 700; margin: 0 0 8px; }
+  p { color: var(--muted); font-size: 14px; margin: 0 0 28px; }
+
+  .store-badges {
+    display: flex; gap: 16px; justify-content: center; align-items: center;
+    flex-wrap: wrap;
+  }
+  .store-badges a { display: inline-flex; line-height: 0; }
+  .store-badges img { height: 54px; width: auto; display: block; }
+  @media (max-width: 420px) { .store-badges img { height: 46px; } }
+
+  .home { margin-top: 32px; font-size: 12.5px; }
+  .home a { color: var(--muted); text-decoration: none; }
+  .home a:hover { color: var(--orange); }
+  .legal { margin-top: 24px; font-size: 11px; line-height: 1.6; color: var(--muted); opacity: 0.55; }
+</style>
 </head>
 <body>
-  <p>A redirecionar para a Google Play Store... Se não fores redirecionado automaticamente, <a href="https://play.google.com/store/apps/details?id=app.sprkt.maintenance">clica aqui</a>.</p>
+
+<div class="wrap">
+
+  <div class="brand-row">
+    <div class="logo-dot"><svg width="14" height="14" viewBox="0 0 24 24"><path fill="#1A1E26" d="M19.14,12.94c0.04,-0.3,0.06,-0.61,0.06,-0.94c0,-0.32,-0.02,-0.64,-0.07,-0.94l2.03,-1.58c0.18,-0.14,0.23,-0.41,0.12,-0.61l-1.92,-3.32c-0.12,-0.22,-0.37,-0.29,-0.59,-0.22l-2.39,0.96c-0.5,-0.38,-1.03,-0.7,-1.62,-0.94L14.4,2.81c-0.04,-0.24,-0.24,-0.41,-0.48,-0.41h-3.84c-0.24,0,-0.43,0.17,-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22,-0.08,-0.47,0,-0.59,0.22L2.74,8.87C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58c-0.18,0.14,-0.23,0.41,-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39,-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44,-0.17,0.47,-0.41l0.36,-2.54c0.59,-0.24,1.13,-0.56,1.62,-0.94l2.39,0.96c0.22,0.08,0.47,0,0.59,-0.22l1.92,-3.32c0.12,-0.22,0.07,-0.47,-0.12,-0.61L19.14,12.94z M12,15.6c-1.98,0,-3.6,-1.62,-3.6,-3.6s1.62,-3.6,3.6,-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg></div>
+    <div class="brand">SPRKT</div>
+  </div>
+
+  <h1 id="title">Get Sprkt</h1>
+  <p id="subtitle">Free, no account, no ads. Your data stays on your device.</p>
+
+  <div class="store-badges">
+    <a href="https://apps.apple.com/app/id6799513483">
+      <img id="badge-apple" src="/badge-app-store-en.svg" alt="Download on the App Store">
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=app.sprkt.maintenance">
+      <img id="badge-google" src="/badge-google-play-en.svg" alt="Get it on Google Play">
+    </a>
+  </div>
+
+  <div class="home"><a id="home-link" href="/">sprkt.app</a></div>
+
+  <div class="legal" id="legal">
+    Apple and the Apple logo are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC.
+  </div>
+
+</div>
+
+<script>
+/* Only desktop visitors reach this point. Swap to Portuguese when the browser
+   asks for it; English stays the default so the page works without scripting. */
+(function () {
+  var lang = (navigator.language || navigator.userLanguage || "").toLowerCase();
+  if (lang.indexOf("pt") !== 0) return;
+
+  document.documentElement.lang = "pt";
+  document.getElementById("title").textContent = "Instala a Sprkt";
+  document.getElementById("subtitle").textContent =
+    "Grátis, sem conta, sem anúncios. Os teus dados ficam no teu dispositivo.";
+
+  var apple = document.getElementById("badge-apple");
+  apple.src = "/badge-app-store-pt.svg";
+  apple.alt = "Descarregar na App Store";
+
+  var google = document.getElementById("badge-google");
+  google.src = "/badge-google-play-pt.svg";
+  google.alt = "Disponível no Google Play";
+
+  document.getElementById("home-link").href = "/index-pt.html";
+
+  document.getElementById("legal").textContent =
+    "Apple e o logótipo Apple são marcas comerciais da Apple Inc., registadas nos EUA e noutros países. " +
+    "App Store é uma marca de serviço da Apple Inc. Google Play e o logótipo Google Play são marcas comerciais da Google LLC.";
+})();
+</script>
+
 </body>
 </html>
